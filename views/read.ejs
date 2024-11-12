@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-full bg-zinc-900 p-10 text-white">
+
+        <a class="text-blue-500" href="/">Read more Users</a>
+
+        <h1 class="text-3xl tracking-tighter mb-3">All Users</h1>
+
+        <div class="users flex gap-3 flex-wrap">
+            <!-- User-1 -->
+             <% if(users.length > 0) { %>
+                <% users.forEach(function(user){ %>
+                    <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+                        <div class="w-full h-80 rounded-lg bg-red-700 overflow-hidden">
+
+                            <img class="w-full h-full object-cover object-top" src="<%= user.image %>" alt="">
+
+                        </div>
+                        <h3 class="text-xl mt-3 tracking-tighter"><%= user.name %></h3>
+                        <h5 class="text-zinc-500"><%= user.email %></h5>
+                        <div class="flex gap-3 mt-300">
+                            <a class="text-zinc-300" href="/edit/<%= user.id %>" >Edit User</a>
+                            <a class="text-red-500" class="" href="/delete/<%= user. _id %>">Delete User</a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h3 class="text-zinc-500"> No Any User Found At All..</h3>
+                <% } %>
+
+        </div>
+    </div>
+</body>
+</html>
