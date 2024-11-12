@@ -21,8 +21,24 @@ app.get('/create', async (req, res) =>{
 app.get('/update', async (req, res) =>{
  
     // userModel.findOneUpdate(findone, update, {new:true})
-    let updateduser = await userModel.findOneAndUpdate({username:"Nagaraj"}, {name: "Nagaraj Loni"}, {new: true})
+    let updateduser = await userModel.findOneAndUpdate({username:"Nagaraj"}, {name: "Nagaraj Loni"}, {new: true});
     res.send(updateduser);
 })
+
+//Read
+
+app.get("/read", async (req, res) =>{
+    let users = await userModel.find({username:"Nagaraj"});  // or findOne
+    res.send(users);
+})
+
+
+//Delete
+app.get("/delete", async (req, res) =>{
+    let users = await userModel.findOneAndDelete({username:"Nagaraj"});
+    res.send(users);
+})
+
+
 
 app.listen(3000);
