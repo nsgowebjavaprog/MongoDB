@@ -1,13 +1,25 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://127.0.0.1:27017/authtestapp`);
+mongoose.connect("mongodb://127.0.0.1:27017/testingdatabase");
 
-const userSchema = new mongoose.Schema({
+const userSchema = mongoose.Schema({
     username: String,
+    //OR
+    
+    /*
+    username: {
+        type:String
+    },
+    */
+   
     email: String,
-    password: String,
-    age: Number
-  });
-  
-  // Export the user model
-  module.exports = mongoose.model("user", userSchema);
+    age: Number,
+    posts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'post'
+        }
+    ]
+})
+
+module.exports = mongoose.model('user', userSchema);
